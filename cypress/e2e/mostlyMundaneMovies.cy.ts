@@ -29,6 +29,11 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('.card-title')
         .should('contain', 'The Matrix')
     })
-
+    it('While searching, a loading spinner should appear', () => {
+      cy.get('.form-control').type('Enemy of the State')
+      cy.get('[type="submit"]').click()
+      cy.get('#loading-wrapper > .my-5').should('be.visible')
+      // should show list of movies, or only the spinner?
+    })
   })
 })
