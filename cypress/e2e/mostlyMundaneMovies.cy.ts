@@ -35,5 +35,14 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('#loading-wrapper > .my-5').should('be.visible')
       // should show list of movies, or only the spinner?
     })
+    it('click on the first search result and the page you end up on must match the ID of the film', () => {
+      cy.get('.form-control').type('the matrix')
+      cy.get('[type="submit"]').click()
+      cy.get('.movie-list')
+      cy.get('[data-imdb-id="tt0133093"]')
+        .find('a').click()
+        .location('pathname').should('equal', '/movies/tt0133093')
+      //cy.get(':nth-child(1) > .card > .card-body > .card-link').click()
+    })
   })
 })
