@@ -39,6 +39,7 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
     it('click on the first search result and the page you end up on must match the ID of the film', () => {
       cy.get('.form-control').type('the matrix')
       cy.get('[type="submit"]').click()
+      cy.get('#loading-wrapper > .my-5').should('be.visible')
       cy.get('.movie-list')
       cy.get('[data-imdb-id="tt0133093"]')
         .find('a').click()
@@ -50,6 +51,13 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('[type="submit"]').click()
       cy.get('#loading-wrapper > .my-5').should('be.visible')
       cy.get('.fade').should('be.visible').contains('Movie not found!')
+    })
+    it('If you search for "the postman always rings twice", then the request should make a timeout', () => {
+      cy.get('.form-control').type('the postman always rings twice')
+      cy.get('[type="submit"]').click()
+      cy.get('#loading-wrapper > .my-5').should('be.visible')
+      cy.get('.fade').should('be.visible').contains('👀')
+      cy.get('p').contains('Does he, really?')
     })
   })
 })

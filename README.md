@@ -33,8 +33,8 @@ https://www.imdb.com/list/ls046446209/
 [x] Can click on the first search result (when the page has finished loading) and the page you end up on must match the ID of the film (via a data attribute)
 
 ### VG
-[] Can search for "Isaks Memes" and get no hits (sad)
-[] If you search for "the postman always rings twice", then the request should make a timeout
+[x] Can search for "Isaks Memes" and get no hits (sad)
+[x] If you search for "the postman always rings twice", then the request should make a timeout
 [] If you enter the path for the movie with id tt1337, an error message should be displayed (a shame)
 [] If you go to a page that does not exist, an error message should be displayed
 [] Mocha search request for "The Matrix" and get request for the movie "The Matrix" in Cypress (there are two different requests) and respond with data from two fixtures
