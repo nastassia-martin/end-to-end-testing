@@ -10,3 +10,15 @@ E2E-testing med Cypress.
 3. Kör `npm install`
 4. Installera Cypress och konfigurera det
 5. Skapa tester enligt kravspecifikationen
+
+
+## Steps i took to start testing
+1. went to inlamnings folder for testing.
+2. cd into inlamning 3
+3. cloned boilerplate from HR
+4. npm install
+5. npm install cypress --save-dev
+6. npx cypress open
+7. clicked e2e testing, select chrome
+8. created new spec called mostlyMundateMovies
+9. Created baseURL in cypress.config.ts (had to restart e2e testing)
