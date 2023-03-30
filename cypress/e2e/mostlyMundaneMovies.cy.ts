@@ -23,6 +23,7 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
     it('Can search for "The Matrix" and get at least 3 number of hits', () => {
       cy.get('.form-control').type('The Matrix')
       cy.get('[type="submit"]').click()
+      cy.get('#loading-wrapper > .my-5').should('be.visible')
       cy.get('.movie-list')
         .find(">.movie-list-item")
         .should('have.length.at.least', 3)
@@ -43,6 +44,12 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
         .find('a').click()
         .location('pathname').should('equal', '/movies/tt0133093')
       //cy.get(':nth-child(1) > .card > .card-body > .card-link').click()
+    })
+    it('Can search for "Isaks Memes" and get no hits (sad)', () => {
+      cy.get('.form-control').type('Isaks Memes')
+      cy.get('[type="submit"]').click()
+      cy.get('#loading-wrapper > .my-5').should('be.visible')
+      cy.get('.fade').should('be.visible').contains('Movie not found!')
     })
   })
 })
