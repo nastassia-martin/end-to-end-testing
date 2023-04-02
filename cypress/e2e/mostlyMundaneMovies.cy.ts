@@ -26,9 +26,9 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('.form-control').type('the matrix')
       cy.get('[type="submit"]').click()
       cy.get('#loading-wrapper > .my-5').should('be.visible')
-      cy.get('.movie-list-item').first().children().invoke('attr', 'data-imdb-id').then(() => {
+      cy.get('.movie-list-item').first().children().invoke('attr', 'data-imdb-id').then((imdbId) => {
         cy.get(':nth-child(1) > .card > .card-body > .card-link').click()
-        cy.location('pathname').should('equal', '/movies/tt0133093')
+        cy.location('pathname').should('equal', `/movies/${imdbId} `)
       })
     })
   })
