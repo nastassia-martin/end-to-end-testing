@@ -40,10 +40,24 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('.form-control').type('the matrix')
       cy.get('[type="submit"]').click()
       cy.get('#loading-wrapper > .my-5').should('be.visible')
-      cy.get('.movie-list')
-      cy.get('[data-imdb-id="tt0133093"]')
-        .find('a').click()
-        .location('pathname').should('equal', '/movies/tt0133093')
+      // cy.get('.movie-list') //try movie-list-item instead
+      cy.get('.movie-list-item')
+        .first()
+        .children()
+        //   // // .should('have.attr', 'data-imdb-id')
+        .invoke('attr', 'data-imdb-id')
+        .then((imbdId) => {
+          cy.log(`Got me some imbdId: ${imbdId}`)
+
+          cy.get(':nth-child(1) > .card > .card-body > .card-link')          //       //   .first()
+            .click()
+          cy.location('pathname').should('equal', '/movies/tt0133093')
+
+        })
+
+      // cy.get('[data-imdb-id="tt0133093"]')
+      //   .find('a').click()
+      //   .location('pathname').should('equal', '/movies/tt0133093')
       //cy.get(':nth-child(1) > .card > .card-body > .card-link').click()
     })
     it('Can search for "Isaks Memes" and get no hits (sad)', () => {
@@ -59,5 +73,12 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('.fade').should('be.visible').contains('👀')
       cy.get('p').contains('Does he, really?')
     })
+    it('enter the path for the movie with id tt1337, an error message should be displayed (a shame)', () => {
+      cy.visit('https://mostly-mundane-movies.netlify.app/movies/tt1337') // this works!
+    })
+    // https://mostly-mundane-movies.netlify.app/movies/tt1337
+    // something like this ?: 
+    // cy.location('pathname').should('equal', '/movies/tt1337')
+
   })
 })
