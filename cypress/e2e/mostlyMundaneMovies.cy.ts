@@ -78,5 +78,15 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('.fade').should('contain', 'LOL, what a fail')
       cy.get('p').should('contain', 'Haxx0r now, are we?')
     })
+    it('error message displayed if page that does not exist', () => {
+      cy.visit('https://mostly-mundane-movies.netlify.app/cats')
+      cy.get('.alert-heading').should('contain', "It's not us, it's you")
+      cy.get('p').should('contain', 'That page does not exist. You should be ashamed of yourself.')
+      cy.get('.btn').should('contain', '👶🏻 I want my mommy')
+        .click()
+      cy.location('pathname').should('equal', '/')
+
+
+    })
   })
 })
