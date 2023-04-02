@@ -74,11 +74,9 @@ describe('Mostly Mundane Movies', { defaultCommandTimeout: 10000 }, () => {
       cy.get('p').contains('Does he, really?')
     })
     it('enter the path for the movie with id tt1337, an error message should be displayed (a shame)', () => {
-      cy.visit('https://mostly-mundane-movies.netlify.app/movies/tt1337') // this works!
+      cy.visit('https://mostly-mundane-movies.netlify.app/movies/tt1337')
+      cy.get('.fade').should('contain', 'LOL, what a fail')
+      cy.get('p').should('contain', 'Haxx0r now, are we?')
     })
-    // https://mostly-mundane-movies.netlify.app/movies/tt1337
-    // something like this ?: 
-    // cy.location('pathname').should('equal', '/movies/tt1337')
-
   })
 })
