@@ -20,10 +20,10 @@ This project is runs end to end (e2e) tests using Cypress. The purpose of the pr
 
 In your terminal run these commands:
 
-npm install
-npm run dev
+1. `npm install`
+2. `npm run dev`
 
 To run the tests run:
 
-npm run test
+`npm run test`
 
